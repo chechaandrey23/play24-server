@@ -1,0 +1,32 @@
+import { Request } from 'express';
+import { ConfigService } from '@nestjs/config';
+import { MediaryQuizsService as MediaryUserQuizsService } from '../../mediaries/user/quizs/mediary.quizs.service';
+import { MediaryQuizsService } from '../../mediaries/admin/quizs/mediary.quizs.service';
+import { MediaryResultsService } from '../../mediaries/admin/results/mediary.results.service';
+import { QuizDocument } from '../../entries/quizs/quiz.model';
+import { QuestionDocument } from '../../entries/questions/question.model';
+import { QuestionTypeDocument } from '../../entries/question-types/question.type.model';
+import { AttemptDocument } from '../../entries/attempts/attempt.model';
+import { GetQuizInterface, GetAllQuizsInterface, GetFullQuizInterface, GetAllQuestionTypesInterface, GetResultsForQuizInterface, ResetResultQuizInterface, GetQuizAllQuestionsInterface, GetQuizQuestionInterface, CreateQuizInterface, DeleteQuizInterface, CreateQuestionInterface, DeleteQuestionInterface, OrderQuestionsInterface, EditQuizDraftInterface, EditQuestionDraftInterface } from './admin.interface';
+export declare class AdminService {
+    private configService;
+    private mediaryUserQuizsService;
+    private mediaryQuizsService;
+    private mediaryResultsService;
+    constructor(configService: ConfigService, mediaryUserQuizsService: MediaryUserQuizsService, mediaryQuizsService: MediaryQuizsService, mediaryResultsService: MediaryResultsService);
+    getAllQuizs(req: Request, payload: GetAllQuizsInterface): Promise<Array<QuizDocument>>;
+    getQuiz(req: Request, payload: GetQuizInterface): Promise<QuizDocument>;
+    getResultsForQuiz(req: Request, payload: GetResultsForQuizInterface): Promise<QuizDocument>;
+    resetResultQuiz(req: Request, payload: ResetResultQuizInterface): Promise<AttemptDocument>;
+    getQuizAllQuestions(req: Request, payload: GetQuizAllQuestionsInterface): Promise<Array<QuestionDocument>>;
+    getFullQuiz(req: Request, payload: GetFullQuizInterface): Promise<QuizDocument>;
+    getQuizQuestion(req: Request, payload: GetQuizQuestionInterface): Promise<QuestionDocument>;
+    createQuiz(req: Request, payload: CreateQuizInterface): Promise<QuizDocument>;
+    deleteQuiz(req: Request, payload: DeleteQuizInterface): Promise<QuizDocument>;
+    editQuizDraft(req: Request, payload: EditQuizDraftInterface): Promise<QuizDocument>;
+    createQuestion(req: Request, payload: CreateQuestionInterface): Promise<QuestionDocument>;
+    editQuestionDraft(req: Request, payload: EditQuestionDraftInterface): Promise<QuestionDocument>;
+    deleteQuestion(req: Request, payload: DeleteQuestionInterface): Promise<QuestionDocument>;
+    orderQuestions(req: Request, payload: OrderQuestionsInterface): Promise<Array<QuestionDocument>>;
+    getAllQuestionTypes(req: Request, payload: GetAllQuestionTypesInterface): Promise<Array<QuestionTypeDocument>>;
+}

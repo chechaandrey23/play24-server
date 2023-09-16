@@ -1,0 +1,36 @@
+import { ConfigService } from '@nestjs/config';
+import { Connection } from 'mongoose';
+import { MongooseSession, TypeMethodWithSession } from '../../../utils/mongoose.session';
+import { QuizsService } from '../../../entries/quizs/quizs.service';
+import { QuestionsService } from '../../../entries/questions/questions.service';
+import { QuestionTypesService } from '../../../entries/question-types/question.types.service';
+import { ResultsService } from '../../../entries/results/results.service';
+import { UsersService } from '../../../entries/users/users.service';
+import { QuizDocument } from '../../../entries/quizs/quiz.model';
+import { QuestionDocument } from '../../../entries/questions/question.model';
+import { QuestionTypeDocument } from '../../../entries/question-types/question.type.model';
+import { GetQuizsInterface, GetFullQuizInterface, GetQuizInterface, GetQuizAllQuestionsInterface, GetQuizQuestionInterface, CreateQuizInterface, DeleteQuizInterface, CreateQuestionInterface, DeleteQuestionInterface, OrderQuestionsInterface, QuestionTypesInterface, EditQuizDraftInterface, EditQuestionDraftInterface } from './mediary.quizs.interface';
+export declare class MediaryQuizsService implements MongooseSession {
+    private connection;
+    private configService;
+    private usersService;
+    private quizsService;
+    private questionsService;
+    private questionTypesService;
+    private resultsService;
+    constructor(connection: Connection, configService: ConfigService, usersService: UsersService, quizsService: QuizsService, questionsService: QuestionsService, questionTypesService: QuestionTypesService, resultsService: ResultsService);
+    withSession: TypeMethodWithSession;
+    getQuizs(payload: GetQuizsInterface): Promise<Array<QuizDocument>>;
+    getQuiz(payload: GetQuizInterface): Promise<QuizDocument>;
+    getFullQuiz(payload: GetFullQuizInterface): Promise<QuizDocument>;
+    createQuiz(payload: CreateQuizInterface): Promise<QuizDocument>;
+    deleteQuiz(payload: DeleteQuizInterface): Promise<QuizDocument>;
+    editQuizDraft(payload: EditQuizDraftInterface): Promise<QuizDocument>;
+    getQuizAllQuestions(payload: GetQuizAllQuestionsInterface): Promise<Array<QuestionDocument>>;
+    getQuizQuestion(payload: GetQuizQuestionInterface): Promise<QuestionDocument>;
+    createQuestion(payload: CreateQuestionInterface): Promise<QuestionDocument>;
+    editQuestionDraft(payload: EditQuestionDraftInterface): Promise<QuestionDocument>;
+    deleteQuestion(payload: DeleteQuestionInterface): Promise<QuestionDocument>;
+    orderQuestions(payload: OrderQuestionsInterface): Promise<Array<QuestionDocument>>;
+    getAllQuestionTypes(payload: QuestionTypesInterface): Promise<Array<QuestionTypeDocument>>;
+}

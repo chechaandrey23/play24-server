@@ -1,0 +1,35 @@
+import { ConfigService } from '@nestjs/config';
+import { Connection } from 'mongoose';
+import { MongooseSession, TypeMethodWithSession } from '../../../utils/mongoose.session';
+import { QuizsService } from '../../../entries/quizs/quizs.service';
+import { QuestionsService } from '../../../entries/questions/questions.service';
+import { QuestionTypesService } from '../../../entries/question-types/question.types.service';
+import { ResultsService } from '../../../entries/results/results.service';
+import { UsersService } from '../../../entries/users/users.service';
+import { AttemptsService } from '../../../entries/attempts/attempts.service';
+import { QuizDocument } from '../../../entries/quizs/quiz.model';
+import { QuestionDocument } from '../../../entries/questions/question.model';
+import { AttemptDocument } from '../../../entries/attempts/attempt.model';
+import { GetQuizsInterface, GetQuizInterface, CreateAttemptInterface, GetQuizAllAttemptsInterface, GetQuizAllQuestionsInterface, GetQuizQuestionInterface, SetQuizQuestionInterface, FinishQuizAttemptInterface, CheckExpiredAttemptInterface, GetFullQuizInterface } from './mediary.quizs.interface';
+export declare class MediaryQuizsService implements MongooseSession {
+    protected connection: Connection;
+    private configService;
+    private usersService;
+    private quizsService;
+    private questionsService;
+    private questionTypesService;
+    private resultsService;
+    private attemptsService;
+    constructor(connection: Connection, configService: ConfigService, usersService: UsersService, quizsService: QuizsService, questionsService: QuestionsService, questionTypesService: QuestionTypesService, resultsService: ResultsService, attemptsService: AttemptsService);
+    withSession: TypeMethodWithSession;
+    getQuizs(payload: GetQuizsInterface): Promise<Array<QuizDocument>>;
+    getQuiz(payload: GetQuizInterface): Promise<QuizDocument>;
+    createAttempt(payload: CreateAttemptInterface): Promise<AttemptDocument>;
+    getQuizAllAttempts(payload: GetQuizAllAttemptsInterface): Promise<Array<AttemptDocument>>;
+    protected checkExpiredAttempt(payload: CheckExpiredAttemptInterface): Promise<AttemptDocument>;
+    getQuizAllQuestions(payload: GetQuizAllQuestionsInterface): Promise<Array<QuestionDocument>>;
+    getQuizQuestion(payload: GetQuizQuestionInterface): Promise<QuestionDocument>;
+    setQuizQuestion(payload: SetQuizQuestionInterface): Promise<QuestionDocument>;
+    finishQuizAttempt(payload: FinishQuizAttemptInterface): Promise<QuizDocument>;
+    getFullQuiz(payload: GetFullQuizInterface): Promise<QuizDocument>;
+}

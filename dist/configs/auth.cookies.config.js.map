@@ -1,0 +1,1 @@
+{"version":3,"file":"auth.cookies.config.js","sourceRoot":"","sources":["../../src/configs/auth.cookies.config.ts"],"names":[],"mappings":";;AAAA,2CAA0C;AAS1C,kBAAe,IAAA,mBAAU,EAAC,cAAc,EAAE,GAAG,EAAE,CAAC,CAAC;IAC/C,KAAK,EAAE;QACL,EAAC,IAAI,EAAE,aAAa,EAAE,QAAQ,EAAE,IAAI,EAAC;QACrC,EAAC,IAAI,EAAE,cAAc,EAAE,QAAQ,EAAE,IAAI,EAAC;QACtC,OAAO;KAEgB;CAC1B,CAAC,CAAC,CAAC"}
